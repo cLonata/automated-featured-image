@@ -11,7 +11,7 @@
  * Plugin Name:       Automated Featured Image
  * Plugin URI:        https://www.github.com/cLonata
  * GitHub Plugin URI: cLonata/automated-featured-image
- * Description:       Automatically fetches Featured Image
+ * Description:       Automatically fetches Featured Image for Post which has no Featured Image set
  * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.1
@@ -20,7 +20,7 @@
  * Text Domain:       automated-featured-image
  * License:           The 3-Clause BSD License
  * License URI:       https://opensource.org/licenses/BSD-3-Clause
- * Update URI:        https://www.github.com/cLonata
+ * Update URI:        https://www.github.com/cLonata/automated-featured-image
  * 
  * Automated Featured Image is free software: you can redistribute it and/or modify
  * it under the terms of the BSD-3-Clause License as published by
