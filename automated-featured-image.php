@@ -47,22 +47,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // If function of the same name already exist, abort.
-if ( ! function_exists( 'afi_fake_thumbnail_id' ) ) {    
+if ( ! function_exists( 'afi_fake_thumbnail_id' ) ) {
     /**
      * Summary of afi_fake_thumbnail_id
      * 
      * If the Posts doesn't have $thumbnail_id then
-     * create a fake $thumbnail_id for Posts
-     * which doesn't have thumbnails in order to
-     * bypass theme's placeholder images.
+     * create a fake $thumbnail_id for it in order
+     * to bypass theme's placeholder images.
      *
      * @param  int $thumbnail_id
      * @return int $fake_id
      */
     function afi_fake_thumbnail_id( $thumbnail_id ) {
-        global $post;
         $fake_id = null;
-
         if( get_post_type() == 'post' && get_post_status() == 'publish' && ! $thumbnail_id ) {
             $fake_id = 1;
             return $fake_id;
@@ -73,7 +70,7 @@ if ( ! function_exists( 'afi_fake_thumbnail_id' ) ) {
     add_filter( 'post_thumbnail_id', 'afi_fake_thumbnail_id' );
 }
 
-if ( ! function_exists( 'afi_auto_thumbnails' ) ) {    
+if ( ! function_exists( 'afi_auto_thumbnails' ) ) {
     /**
      * Summary of afi_auto_thumbnails
      *
@@ -84,29 +81,16 @@ if ( ! function_exists( 'afi_auto_thumbnails' ) ) {
      * @return string $thumbnail_url
      */
     function afi_auto_thumbnails( $thumbnail_url ) {
-        // $featured_image_exists = has_post_thumbnail($post->ID);
         if ( !$thumbnail_url ) {
-            //$thumbnail_url = 'https://pbs.twimg.com/media/FRUNUjxXoAIpZN9?format=jpg&name=large';
-    
-    
-    
             $queried_post = get_post();
-            $first_image_in_post = '';
             ob_start();
             ob_end_clean();
             $output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $queried_post->post_content, $matches);
-            
             $first_image_in_post = '';
-            
             if (isset($matches[1][0])) {$first_image_in_post = $matches[1][0];}
             $thumbnail_url = $first_image_in_post;
-    
-    
-    
-            // echo ' DOESNT EXIST ';
         }
         return $thumbnail_url;
-        
     }
     add_filter( 'post_thumbnail_url', 'afi_auto_thumbnails' );
 }
